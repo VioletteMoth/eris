@@ -49,9 +49,9 @@ func Display(c data.Character) {
 	fmt.Println(" /", c.InvSize*10)
 	var choice int = -1
 	if c.Points <= 0 {
-		data.ColorUnavailable.Println("1 > Back")
+		data.ColorUnavailable.Println("1 > Upgrade")
 	} else {
-		fmt.Println("1 > Back")
+		fmt.Println("1 > Upgrade")
 	}
 	fmt.Println("0 > Back")
 	for choice != 0 || (choice == 1 && c.Points >= 0) {
