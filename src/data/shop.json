@@ -1,0 +1,72 @@
+{
+"merchant":[{
+    "id": "mrc1",
+    "name": "VEN-34",
+    "products": ["elixir", "poison", "skillBlessing", "skillKick", "invSpace", "weaponSword"]
+}],
+"product": [{
+    "item": "elixir", 
+    "Cost": 0, 
+    "quantity": 5
+},
+{
+    "item": "poison", 
+    "cost": 7, 
+    "quantity": 5
+},
+{
+    "item": "skillBlessing", 
+    "cost": 18, 
+    "quantity": 2
+},
+{
+    "item": "skillKick", 
+    "cost": 18, 
+    "quantity": 2
+},
+{
+    "item": "invSpace", 
+    "cost": 30, 
+    "quantity": 3
+},
+{
+    "item": "sword", 
+    "cost": 25, 
+    "quantity": 3
+},
+{
+    "item": "bow", 
+    "cost": 15, 
+    "quantity": 2
+},
+{
+    "item": "leatherTop", 
+    "cost": 25, 
+    "quantity": 4
+},
+{
+    "item": "ironPlates", 
+    "cost": 50, 
+    "quantity": 2
+},
+{
+    "item": "angelFeather", 
+    "cost": 12, 
+    "quantity": 5
+},
+{
+    "item": "scalp", 
+    "cost": 9, 
+    "quantity": 10
+},
+{
+    "item": "metalPlate", 
+    "cost": 13, 
+    "quantity": 5
+},
+{
+    "item": "leather", 
+    "cost": 15, 
+    "quantity": 5
+}]
+}

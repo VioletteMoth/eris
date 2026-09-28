@@ -1,0 +1,35 @@
+[{
+    "id": "empty",
+	"name": "",
+	"desc": "",
+	"icon": "",
+    "cost": ""
+},
+{
+    "id": "rush",
+	"name": "Rush",
+	"desc": "(5 dmg) A simple charge on the ennemy.",
+	"icon": "🗲",
+    "cost": "0"
+},
+{
+    "id": "assurance",
+	"name": "Assurance",
+	"desc": "(1 SP)(HP dmg) Deals more dammage the weaker you are.",
+	"icon": "🗴",
+    "cost": "1"
+},
+{
+    "id": "blessing",
+	"name": "Blessing",
+	"desc": "(1 SP)(+ 3 HP) Divine blessing to close you wounds.",
+	"icon": "🗴",
+    "cost": "1"
+},
+{
+    "id": "kick",
+	"name": "Kick",
+	"desc": "(1 SP)(8 dmg) A low kick right in the kneecaps.",
+	"icon": "🗴",
+    "cost": "1"
+}]
