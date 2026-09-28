@@ -2,16 +2,17 @@ package combat
 
 import (
 	"eris/character"
+	"eris/data"
 	"eris/sound"
 	"fmt"
 	"strconv"
 )
 
-func Combat(c, e *character.Char) {
+func Combat(c, e *data.Character) {
 	fmt.Print("\n")
 	fmt.Println("	🙟🙦  COMBAT START 🙤🙝")
 	if e == nil {
-		e = data.GetEnemy()
+		*e = data.GetEnemy("")
 	}
 	var advantage bool = true
 	if c.Class == "Machina" && e.Class == "Sarta" {
@@ -25,7 +26,7 @@ func Combat(c, e *character.Char) {
 	}
 	var turn int = 1
 	for c.CurHP > 0 && e.CurHP > 0 {
-		if CombatTurn(c, &e, advantage, turn) {
+		if CombatTurn(c, e, advantage, turn) {
 			return
 		}
 		turn++
@@ -33,7 +34,7 @@ func Combat(c, e *character.Char) {
 	}
 }
 
-func CombatTurn(char, enemy *character.Char, advantage bool, turn int) bool {
+func CombatTurn(char, enemy *data.Character, advantage bool, turn int) bool {
 	fmt.Println("	🙟  TURN", turn, "🙝")
 	switch enemy.Class {
 	case "None":
@@ -90,7 +91,7 @@ func CombatTurn(char, enemy *character.Char, advantage bool, turn int) bool {
 	return false
 }
 
-func PlayerTurn(char, enemy *Character) {
+func PlayerTurn(char, enemy *data.Character) {
 	for {
 		fmt.Println("0[WAIT] 1[CHARGE] 2[ITEM] 3[SKILL]")
 
@@ -101,17 +102,17 @@ func PlayerTurn(char, enemy *Character) {
 		}
 		switch choice {
 		case 1:
-			char.curSP += 2
-			if char.curSP > char.maxSP {
-				char.curSP = char.maxSP
+			char.CurSP += 2
+			if char.CurSP > char.MaxSP {
+				char.CurSP = char.MaxSP
 			}
 			return
 		case 2:
-			if AccessInventory(char, enemy) {
+			if character.Inventory(char, enemy) {
 				return
 			}
 		case 3:
-			if AccessSkills(char, enemy) {
+			if character.Skills(char, enemy) {
 				return
 			}
 		case 0:
@@ -120,20 +121,20 @@ func PlayerTurn(char, enemy *Character) {
 	}
 }
 
-func EnemyTurn(char, enemy *character.Char, turn int) {
+func EnemyTurn(c, e *data.Character, turn int) {
 	if turn%2 == 0 {
-		skills.SkillRush.effect(enemy, char)
+		c.CurHP -= DealDammage(e, c, 5)
 	}
 }
 
-func IsDead(c *character.Char) {
+func IsDead(c *data.Character) {
 	fmt.Println("\n	🕱 THANATOS 🕱")
 	sound.PlaySound("thanatos")
 	c.CurHP = c.MaxHP / 2
 	c.CurXP = 0
 }
 
-func IsWin(c *character.Char, e character.Char) bool {
+func IsWin(c *data.Character, e data.Character) bool {
 	fmt.Println("	🙟🙦  YOU WON 🙤🙝")
 	c.CurXP += e.CurXP
 	c.Coins += e.Coins
@@ -142,7 +143,7 @@ func IsWin(c *character.Char, e character.Char) bool {
 	return true
 }
 
-func IsLevelUp(c *character.Char) {
+func IsLevelUp(c *data.Character) {
 	if c.CurXP >= c.MaxXP {
 		c.CurXP -= c.MaxXP
 		c.MaxXP += c.MaxXP / 4
@@ -157,6 +158,6 @@ func IsLevelUp(c *character.Char) {
 	}
 }
 
-func DealDammage(user, target *character.Char, dmg int) int {
+func DealDammage(user, target *data.Character, dmg int) int {
 	return int(float32(dmg) * (1 + (user.Atk / 10)))
 }
