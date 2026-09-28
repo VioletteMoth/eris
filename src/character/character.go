@@ -8,19 +8,20 @@ import (
 
 func InitCharacter(nm, cl string) data.Character {
 	c := data.Character{
-		Name:    nm,
-		Class:   cl,
-		Level:   0,
-		CurXP:   0,
-		MaxXP:   15,
-		Points:  0,
-		Coins:   100,
-		CurHP:   5,
-		MaxHP:   12,
-		CurSP:   4,
-		MaxSP:   4,
-		Atk:     0,
-		InvSize: 1,
+		Name:      nm,
+		Class:     cl,
+		Level:     0,
+		CurXP:     0,
+		MaxXP:     15,
+		Points:    0,
+		Coins:     100,
+		CurHP:     5,
+		MaxHP:     12,
+		CurSP:     4,
+		MaxSP:     4,
+		Atk:       0,
+		InvSize:   1,
+		Inventory: []data.Item{data.GetItem("item", "ether"), data.GetItem("item", "ether"), data.GetItem("item", "poison")},
 	}
 	return c
 }
