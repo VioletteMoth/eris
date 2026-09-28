@@ -29,11 +29,11 @@ func Menu(c *data.Character, zone string) {
 		case 1:
 			character.Display(*c)
 		case 2:
-			Inventory(c, nil)
+			character.Inventory(c, nil)
 		case 3:
-			Equipment(c)
+			character.Equipment(c)
 		case 4:
-			Skills(c, nil)
+			character.Skills(c, nil)
 		case 5:
 			economy.Shop(c, nil)
 		case 6:
