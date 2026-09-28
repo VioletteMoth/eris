@@ -5,7 +5,9 @@ import (
 	"fmt"
 )
 
-func Forge(char *data.Character, blacksmith *data.Blacksmith) {
+func Forge(char *data.Character, zone string) {
+	s := data.GetSmith(zone)
+	blacksmith := &s
 	for {
 		fmt.Println("\n	🙟🙦  FORGE 🙤🙝")
 		fmt.Println("🞠", char.Coins)

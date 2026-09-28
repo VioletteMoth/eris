@@ -35,11 +35,11 @@ func Menu(c *data.Character, zone string) {
 		case 4:
 			character.Skills(c, nil)
 		case 5:
-			economy.Shop(c, nil)
+			economy.Shop(c, zone)
 		case 6:
-			economy.Forge(c, nil)
+			economy.Forge(c, zone)
 		case 7:
-			combat.Combat(c, nil)
+			combat.Combat(c, zone)
 		case 0:
 			return
 		default:

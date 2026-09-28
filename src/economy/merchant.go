@@ -5,7 +5,9 @@ import (
 	"fmt"
 )
 
-func Shop(char *data.Character, merchant *data.Merchant) {
+func Shop(char *data.Character, zone string) {
+	m := data.GetMerc(zone)
+	merchant := &m
 	for {
 		fmt.Println("\n	🙟🙦  SHOP 🙤🙝")
 		fmt.Println("🞠", char.Coins)
