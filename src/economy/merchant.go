@@ -22,7 +22,7 @@ func Shop(char *data.Character, zone string) {
 
 		var choice int = -1
 		for choice < 0 || len(merchant.Products) < choice {
-			fmt.Print(">")
+			fmt.Print("> ")
 			fmt.Scan(&choice)
 		}
 		switch choice {
