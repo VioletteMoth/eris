@@ -22,4 +22,4 @@ go run main.go
 ```
 
 ### Credits
-CreativeCommons0
+Creative Commons Zero
