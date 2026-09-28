@@ -11,8 +11,10 @@ import (
 func Combat(c, e *data.Character) {
 	fmt.Print("\n")
 	fmt.Println("	🙟🙦  COMBAT START 🙤🙝")
+	var enemy data.Character
 	if e == nil {
-		*e = data.GetEnemy("")
+		enemy = data.GetEnemy("")
+		e = &enemy
 	}
 	var advantage bool = true
 	if c.Class == "Machina" && e.Class == "Sarta" {
