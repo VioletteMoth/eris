@@ -1,6 +1,6 @@
 {
 "merchant":[{
-    "id": "mrc1",
+    "id": "zone1",
     "name": "VEN-34",
     "products": ["elixir", "poison", "skillBlessing", "skillKick", "invSpace", "weaponSword"]
 }],
