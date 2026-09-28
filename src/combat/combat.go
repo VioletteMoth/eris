@@ -8,14 +8,11 @@ import (
 	"strconv"
 )
 
-func Combat(c, e *data.Character) {
+func Combat(c *data.Character, zone string) {
+	enemy := data.GetEnemy("zone")
+	e := &enemy
 	fmt.Print("\n")
 	fmt.Println("	🙟🙦  COMBAT START 🙤🙝")
-	var enemy data.Character
-	if e == nil {
-		enemy = data.GetEnemy("")
-		e = &enemy
-	}
 	var advantage bool = true
 	if c.Class == "Machina" && e.Class == "Sarta" {
 		advantage = false
