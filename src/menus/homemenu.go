@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func GameMainMenu(player *data.Character) bool {
+func HomeMenu(player *data.Character) bool {
 	for {
 		fmt.Println("\n	🙟🙦🙧  HOME MENU 🙥🙤🙝")
 		fmt.Println("1 > New Game")
