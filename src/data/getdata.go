@@ -13,7 +13,6 @@ func GetItem(kind, id string) Item {
 	file := GetJson("items")
 
 	var ans Item
-
 	ans.Name = gjson.Get(file, string(kind+".#(id=="+id+").name")).String()
 	ans.Desc = gjson.Get(file, string(kind+".#(id=="+id+").desc")).String()
 	ans.Type = gjson.Get(file, string(kind+".#(id=="+id+").type")).String()
@@ -26,7 +25,6 @@ func GetSkill(id string) Skill {
 	file := GetJson("skills")
 
 	var ans Skill
-
 	ans.Name = gjson.Get(file, string(".#(id=="+id+").name")).String()
 	ans.Desc = gjson.Get(file, string(".#(id=="+id+").desc")).String()
 	ans.Icon = gjson.Get(file, string(".#(id=="+id+").icon")).String()
@@ -38,7 +36,6 @@ func GetEnemy(id string) Character {
 	file := GetJson("enemies")
 
 	var ans Character
-
 	ans.Name = gjson.Get(file, string(".#(id=="+id+").name")).String()
 	ans.Class = gjson.Get(file, string(".#(id=="+id+").desc")).String()
 	ans.CurHP = ConvertInt(file, "", id, "max_hp")
@@ -50,7 +47,6 @@ func GetMerc(id string) Merchant {
 	file := GetJson("shop")
 
 	var ans Merchant
-
 	for i, c := range gjson.Get(file, string(".#(id=="+id+").inventory.")).Array() {
 		ans.Products[i].Item = GetItem("", c.String())
 		ans.Products[i].Cost = ConvertInt(file, "", id, "cost")
@@ -63,7 +59,6 @@ func GetSmith(id string) Blacksmith {
 	file := GetJson("forge")
 
 	var ans Blacksmith
-
 	for i, c := range gjson.Get(file, string(".#(id=="+id+").inventory.")).Array() {
 		ans.Craft[i].Item = GetItem("equipment", c.String())
 		for j, d := range gjson.Get(file, string(".#(id=="+id+").inventory.")).Array() {
