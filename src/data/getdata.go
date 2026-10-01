@@ -25,9 +25,9 @@ func GetSkill(id string) Skill {
 	file := GetJson("skills")
 
 	var ans Skill
-	ans.Name = gjson.Get(file, string(".#(id=="+id+").name")).String()
-	ans.Desc = gjson.Get(file, string(".#(id=="+id+").desc")).String()
-	ans.Icon = gjson.Get(file, string(".#(id=="+id+").icon")).String()
+	ans.Name = gjson.Get(file, string("#(id=="+id+").name")).String()
+	ans.Desc = gjson.Get(file, string("#(id=="+id+").desc")).String()
+	ans.Icon = gjson.Get(file, string("#(id=="+id+").icon")).String()
 	ans.Cost = ConvertInt(file, "", id, "cost")
 	return ans
 }
@@ -36,8 +36,8 @@ func GetEnemy(id string) Character {
 	file := GetJson("enemies")
 
 	var ans Character
-	ans.Name = gjson.Get(file, string(".#(id=="+id+").name")).String()
-	ans.Class = gjson.Get(file, string(".#(id=="+id+").desc")).String()
+	ans.Name = gjson.Get(file, string("#(id=="+id+").name")).String()
+	ans.Class = gjson.Get(file, string("#(id=="+id+").desc")).String()
 	ans.CurHP = ConvertInt(file, "", id, "max_hp")
 	ans.MaxHP = ConvertInt(file, "", id, "max_hp")
 	return ans
@@ -47,7 +47,7 @@ func GetMerc(id string) Merchant {
 	file := GetJson("shop")
 
 	var ans Merchant
-	for i, c := range gjson.Get(file, string(".#(id=="+id+").inventory.")).Array() {
+	for i, c := range gjson.Get(file, string("#(id=="+id+").inventory.")).Array() {
 		ans.Products[i].Item = GetItem("", c.String())
 		ans.Products[i].Cost = ConvertInt(file, "", id, "cost")
 		ans.Products[i].Quantity = ConvertInt(file, "", id, "quantity")
@@ -59,9 +59,9 @@ func GetSmith(id string) Blacksmith {
 	file := GetJson("forge")
 
 	var ans Blacksmith
-	for i, c := range gjson.Get(file, string(".#(id=="+id+").inventory.")).Array() {
+	for i, c := range gjson.Get(file, string("#(id=="+id+").inventory.")).Array() {
 		ans.Craft[i].Item = GetItem("equipment", c.String())
-		for j, d := range gjson.Get(file, string(".#(id=="+id+").inventory.")).Array() {
+		for j, d := range gjson.Get(file, string("#(id=="+id+").inventory.")).Array() {
 			ans.Craft[i].Materials[j] = GetItem("materials", d.String())
 		}
 		ans.Craft[i].Cost = ConvertInt(file, "", id, "cost")
