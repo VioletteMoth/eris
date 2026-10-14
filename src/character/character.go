@@ -21,7 +21,7 @@ func InitCharacter(nm, cl string) data.Character {
 		MaxSP:     4,
 		Atk:       0,
 		InvSize:   1,
-		Inventory: []data.Item{data.GetItem("item", "ether"), data.GetItem("item", "ether"), data.GetItem("item", "poison")},
+		Inventory: []data.Item{data.GetItem("item", "elixir"), data.GetItem("item", "elixir"), data.GetItem("item", "poison")},
 	}
 	return c
 }
