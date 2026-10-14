@@ -21,5 +21,5 @@ Latest indev: Alternatively, download the `src` folder and at the directory loca
 go run main.go
 ```
 
-### Credits
-Creative Commons Zero
+### License
+Creative Commons Zero (CC0)
