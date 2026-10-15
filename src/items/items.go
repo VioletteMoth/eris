@@ -1,51 +1,55 @@
 package items
 
-/*
-var ItemElixir = Item{
-	Effect: func(c *character.Char) {
-		c.CurHP += 10
-		if c.CurHP > c.MaxHP {
-			fmt.Println("recovering to full health.")
-			c.CurHP = c.MaxHP
-			return
-		}
-		fmt.Println("recovering 10 health.")
-	},
-}
+import (
+	"eris/data"
+	"fmt"
+)
 
-var ItemPoison Item = Item{
-	Effect: func(c *character.Char) {
-		fmt.Print("losing ")
-		for range 3 {
-			time.Sleep(1 * time.Second)
-			fmt.Print(c.MaxHP/10, " ")
-			c.CurHP -= c.MaxHP / 10
-		}
-		fmt.Print("health.")
-	},
-}
+func UseFunc(id string, u, t *data.Character) {
+	switch id {
+	case "elixir":
+		func(u, t *data.Character) {
+			t.CurHP += 10
+			if t.CurHP > t.MaxHP {
+				t.CurHP = t.MaxHP
+				fmt.Println("+", t.CurHP-t.MaxHP, " HP")
+				return
+			}
+			fmt.Println("+10 HP")
+		}(u, t)
 
-var ItemSkillBlessing Item = Item{
-	Effect: func(c *character.Char) {
-		fmt.Print("Bless you !")
-		c.CurHP += c.MaxHP / 4
-		if c.CurHP >= c.MaxHP {
-			c.CurHP = c.MaxHP
-		}
-	},
-}
+	case "poison":
+		func(u, t *data.Character) {
+			t.CurHP -= t.MaxHP / int(10/(1+(t.Def/10)))
+			fmt.Println("-", t.MaxHP/int(10/(1+(t.Def/10))), " HP")
+		}(u, t)
 
-var ItemSkillKick Item = Item{
-	Effect: func(c *character.Char) {
-		fmt.Print("Kicking them!")
-		c.CurHP -= 8 * int((c.Atk/10)+1)
-	},
-}
+	case "skillBlessing":
+		func(u, t *data.Character) {
+			fmt.Print("Bless you !")
+			t.CurHP += t.MaxHP / 6
+			if t.CurHP >= t.MaxHP {
+				t.CurHP = t.MaxHP
+				fmt.Println("+", t.CurHP-t.MaxHP, " HP")
+				return
+			}
+			fmt.Println("+10 HP")
+		}(u, t)
 
-var ItemInventory Item = Item{
-	Effect: func(c *character.Char) {
-		fmt.Print("Inventory upgraded")
-		c.InvSize++
-	},
+	case "skillKick":
+		func(u, t *data.Character) {
+			fmt.Print("Kicking them!")
+			t.CurHP -= 8 * (1 + (u.Atk-t.Def)/10)
+		}(u, t)
+
+	case "invSpace":
+		func(u, t *data.Character) {
+			fmt.Print("Inventory upgraded")
+			u.InvSize++
+		}(u, t)
+
+	case "":
+		func(u, t *data.Character) {
+		}(u, t)
+	}
 }
-*/
