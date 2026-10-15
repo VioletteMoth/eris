@@ -2,14 +2,15 @@ package character
 
 import (
 	"eris/data"
+	"eris/utils"
 	"fmt"
 	"strconv"
 )
 
-func InitCharacter(nm, cl string) data.Character {
+func InitCharacter(name string, class int) data.Character {
 	c := data.Character{
-		Name:      nm,
-		Class:     cl,
+		Id:        "player",
+		Name:      name,
 		Level:     0,
 		CurXP:     0,
 		MaxXP:     15,
@@ -20,15 +21,30 @@ func InitCharacter(nm, cl string) data.Character {
 		CurSP:     4,
 		MaxSP:     4,
 		Atk:       0,
+		Def:       0,
 		InvSize:   1,
 		Inventory: []data.Item{data.GetItem("item", "elixir"), data.GetItem("item", "elixir"), data.GetItem("item", "poison")},
+		Skills:    [4]data.Skill{data.GetSkill("rush")},
+	}
+	switch class {
+	case 1:
+		c.Class = "Machina"
+		c.Skills[1] = data.GetSkill("assurance")
+	case 2:
+		c.Class = "Deus"
+		c.Skills[1] = data.GetSkill("benediction")
+	case 3:
+		c.Class = "Sarta"
+		c.Skills[1] = data.GetSkill("kick")
+	case 0:
+		c.Class = ""
 	}
 	return c
 }
 
 func Display(c data.Character) {
-	fmt.Print("\n")
-	fmt.Println("\n	🙟  INFORMATION 🙝")
+	utils.ClearTerminal()
+	fmt.Println("	🙟  INFORMATION 🙝")
 	fmt.Println("Name:		" + c.Name)
 	fmt.Println("Class:		" + c.Class)
 	fmt.Print("Level:		", c.Level)
