@@ -2,6 +2,7 @@ package economy
 
 import (
 	"eris/data"
+	"eris/utils"
 	"fmt"
 )
 
@@ -9,7 +10,8 @@ func Shop(char *data.Character, zone string) {
 	m := data.GetMerc(zone)
 	merchant := &m
 	for {
-		fmt.Println("\n	🙟🙦  SHOP 🙤🙝")
+		utils.ClearTerminal()
+		fmt.Println("	🙟🙦  SHOP 🙤🙝")
 		fmt.Println("🞠", char.Coins)
 		for i, k := range merchant.Products {
 			if char.Coins < k.Cost || k.Quantity <= 0 {

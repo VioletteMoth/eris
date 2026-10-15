@@ -2,6 +2,7 @@ package economy
 
 import (
 	"eris/data"
+	"eris/utils"
 	"fmt"
 )
 
@@ -9,7 +10,8 @@ func Forge(char *data.Character, zone string) {
 	s := data.GetSmith(zone)
 	blacksmith := &s
 	for {
-		fmt.Println("\n	🙟🙦  FORGE 🙤🙝")
+		utils.ClearTerminal()
+		fmt.Println("	🙟🙦  FORGE 🙤🙝")
 		fmt.Println("🞠", char.Coins)
 		for i, k := range blacksmith.Craft {
 			fmt.Println(i, ">", k.Item.Name)
