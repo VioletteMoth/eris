@@ -1,4 +1,14 @@
-[{
-    "id":"",
-    "Name":""
+{
+"zone": [{
+    "id": "zone1",
+    "list": ["Dunmy"]
+}],
+"enemy": [{
+    "id":"Dunmy",
+    "name":"Dunmy",
+    "health": 15,
+    "energy": 5,
+    "exp": 23,
+    "money": 17
 }]
+}
