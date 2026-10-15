@@ -42,14 +42,14 @@ func CombatTurn(char, enemy *data.Character, advantage bool, turn int) bool {
 	utils.ClearTerminal()
 	fmt.Println("	🙟  TURN", turn, "🙝")
 	switch enemy.Class {
-	case "None":
-		fmt.Print("◌ ")
 	case "Machina":
 		fmt.Print("⚙  ")
 	case "Deus":
 		fmt.Print("✧ ")
 	case "Sarta":
 		fmt.Print("☺ ")
+	default:
+		fmt.Print("◌ ")
 	}
 	fmt.Print(enemy.Name + "	")
 	fmt.Print(strconv.Itoa(enemy.CurHP) + "/" + strconv.Itoa(enemy.MaxHP) + "HP ")
@@ -63,6 +63,8 @@ func CombatTurn(char, enemy *data.Character, advantage bool, turn int) bool {
 		fmt.Print("✧ ")
 	case "Sarta":
 		fmt.Print("☺ ")
+	default:
+		fmt.Print("◌ ")
 	}
 	fmt.Print(char.Name + "	")
 	fmt.Print(strconv.Itoa(char.CurHP) + "/" + strconv.Itoa(char.MaxHP) + "HP ")
