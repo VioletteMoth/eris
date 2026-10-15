@@ -2,13 +2,16 @@ package character
 
 import (
 	"eris/data"
+	"eris/items"
+	"eris/utils"
 	"fmt"
 	"strconv"
 )
 
 func Inventory(char, target *data.Character) bool {
 	for {
-		fmt.Println("\n	🙟  INVENTORY 🙝")
+		utils.ClearTerminal()
+		fmt.Println("	🙟  INVENTORY 🙝")
 		for i, item := range char.Inventory {
 			fmt.Print(strconv.Itoa(i+1) + "[" + string(item.Icon) + " " + item.Name + "]	")
 		}
@@ -22,7 +25,7 @@ func Inventory(char, target *data.Character) bool {
 		}
 		switch {
 		case 0 < item && item <= len(char.Inventory):
-			if PickInvItem(char, target, item) {
+			if pickItem(char, target, item) {
 				return true
 			}
 		case item == 0:
@@ -32,12 +35,17 @@ func Inventory(char, target *data.Character) bool {
 	}
 }
 
-func PickInvItem(char, target *data.Character, index int) bool {
-	if char.Inventory[index-1].Type == "" {
+func pickItem(char, target *data.Character, index int) bool {
+	switch char.Inventory[index-1].Type {
+	case "":
 		for {
 			itm := char.Inventory[index-1]
 			fmt.Println(string(itm.Icon) + " " + itm.Name + " : " + itm.Desc)
-			fmt.Println("1[USE]	2[THROW]")
+			aim := "Throw"
+			if target != nil {
+				aim = target.Name
+			}
+			fmt.Println("1 > Self	2 > " + aim)
 			fmt.Println("0 > Back")
 
 			var choice int = -1
@@ -52,6 +60,7 @@ func PickInvItem(char, target *data.Character, index int) bool {
 				return false
 			case 1:
 				fmt.Print(char.Name, " used ", string(itm.Icon), " ", itm.Name, ", ")
+				items.UseFunc(itm.Id, char, char)
 				char.Inventory[index-1] = data.GetItem("item", "empty")
 				fmt.Print("\n")
 				return true
@@ -60,13 +69,14 @@ func PickInvItem(char, target *data.Character, index int) bool {
 					fmt.Print(char.Name, " threw ", string(itm.Icon), " ", itm.Name, " on the ground.")
 				} else {
 					fmt.Print(char.Name, " threw ", string(itm.Icon), " ", itm.Name, " on ", target.Name, ", ")
+					items.UseFunc(itm.Id, char, target)
 				}
 				char.Inventory[index-1] = data.GetItem("item", "empty")
 				fmt.Print("\n")
 				return true
 			}
 		}
-	} else {
+	default:
 		itm := char.Inventory[index-1]
 		fmt.Println(string(itm.Icon) + " " + itm.Name + " : " + itm.Desc + "(" + itm.Type + ")")
 		if target == nil {
