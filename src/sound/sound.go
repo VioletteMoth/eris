@@ -10,8 +10,8 @@ import (
 	"github.com/gopxl/beep/speaker"
 )
 
-func PlaySound(path string) {
-	f, err := os.Open(path + ".mp3")
+func PlaySound(name string) {
+	f, err := os.Open("sound/" + name + ".mp3")
 	if err != nil {
 		log.Fatal(err)
 	}
