@@ -19,12 +19,12 @@ func IsDead(player *data.Character) {
 	player.CurHP = player.MaxHP / 2
 	player.CurXP = 0
 
-	var start int = -1
+	var next int = -1
 	fmt.Println("\nDon't calm down.")
 	fmt.Println("0 > Rise again")
-	for start != 0 {
+	for next != 0 {
 		fmt.Print("> ")
-		fmt.Scan(&start)
+		fmt.Scan(&next)
 	}
 }
 
@@ -34,6 +34,15 @@ func IsWin(p *data.Character, e data.Character) bool {
 	p.Coins += e.Coins
 	fmt.Println("+", e.CurXP, "XP / +", e.Coins, "🞠")
 	isLevelUp(p)
+
+	var next int = -1
+	fmt.Println("\nDon't calm down.")
+	fmt.Println("0 > Rise again")
+	for next != 0 {
+		fmt.Print("> ")
+		fmt.Scan(&next)
+	}
+
 	return true
 }
 
