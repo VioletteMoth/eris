@@ -2,12 +2,14 @@ package menus
 
 import (
 	"eris/data"
+	"eris/utils"
 	"fmt"
 )
 
 func HomeMenu(player *data.Character) bool {
 	for {
-		fmt.Println("\n	🙟🙦🙧  HOME MENU 🙥🙤🙝")
+		utils.ClearTerminal()
+		fmt.Println("	🙟🙦🙧  HOME MENU 🙥🙤🙝")
 		fmt.Println("1 > New Game")
 		if player != nil {
 			fmt.Println("2 > Resume ")

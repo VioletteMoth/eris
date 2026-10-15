@@ -5,12 +5,14 @@ import (
 	"eris/combat"
 	"eris/data"
 	"eris/economy"
+	"eris/utils"
 	"fmt"
 )
 
 func Menu(c *data.Character, zone string) {
 	for {
-		fmt.Println("\n	🙟🙦🙧  MENU 🙥🙤🙝")
+		utils.ClearTerminal()
+		fmt.Println("	🙟🙦🙧  MENU 🙥🙤🙝")
 		fmt.Println("1 > Status")
 		fmt.Println("2 > Inventory")
 		fmt.Println("3 > Equipment")
@@ -21,10 +23,11 @@ func Menu(c *data.Character, zone string) {
 		fmt.Println("0 > Quit")
 
 		var choice int = -1
-		for choice < 0 || choice > 8 {
+		for choice < 0 || choice > 7 {
 			fmt.Print("> ")
 			fmt.Scan(&choice)
 		}
+
 		switch choice {
 		case 1:
 			character.Display(*c)
