@@ -2,12 +2,14 @@ package character
 
 import (
 	"eris/data"
+	"eris/utils"
 	"fmt"
 )
 
 func Equipment(char *data.Character) {
 	for {
-		fmt.Println("\n	🙟 EQUIPMENT 🙝")
+		utils.ClearTerminal()
+		fmt.Println("	🙟 EQUIPMENT 🙝")
 		fmt.Println("1 > Weapon:", char.Equipment[0].Name)
 		fmt.Println("2 > Head:", char.Equipment[1].Name)
 		fmt.Println("3 > Chest:", char.Equipment[2].Name)
@@ -23,20 +25,20 @@ func Equipment(char *data.Character) {
 		case "0":
 			return
 		case "1":
-			ManageEquipment(char, &char.Equipment[0], "weapon")
+			manageEquipment(char, &char.Equipment[0], "weapon")
 		case "2":
-			ManageEquipment(char, &char.Equipment[1], "head")
+			manageEquipment(char, &char.Equipment[1], "head")
 		case "3":
-			ManageEquipment(char, &char.Equipment[2], "chest")
+			manageEquipment(char, &char.Equipment[2], "chest")
 		case "4":
-			ManageEquipment(char, &char.Equipment[3], "feet")
+			manageEquipment(char, &char.Equipment[3], "feet")
 		default:
 			fmt.Println("Invalid choice.")
 		}
 	}
 }
 
-func ManageEquipment(char *data.Character, equipped *data.Item, slot string) {
+func manageEquipment(char *data.Character, equipped *data.Item, slot string) {
 	for {
 		fmt.Println("\nSlot:", slot)
 		fmt.Println("Equipped:", equipped.Name)
@@ -114,10 +116,10 @@ func ManageEquipment(char *data.Character, equipped *data.Item, slot string) {
 		char.Inventory[index] = previous
 		*equipped = selected
 
-		fmt.Println(selected.Name, "equipped.")
+		fmt.Println(selected.Name, " equipped.")
 
 		if previous.Name != "" {
-			fmt.Println(previous.Name, "returned to your inventory.")
+			fmt.Println(previous.Name, " returned to your inventory.")
 		}
 		return
 	}
