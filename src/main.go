@@ -1,6 +1,8 @@
 package main
 
-import "eris/story"
+import (
+	"eris/story"
+)
 
 func main() {
 	story.StartStory()
