@@ -1,0 +1,28 @@
+[{
+    "id": "Status",
+    "content": ["Name", "Level", "Exp", "Health", "Energy", "Attack", "Inventory"],
+    "error": "Status not accessible"
+},
+{
+    "id": "Upgrade",
+    "error": "Not enough points"
+},
+{
+    "id": "Inventory",
+    "error": "Inventory not accessible"
+},
+{
+    "id": "Equipment"
+},
+{
+    "id": "Skills"
+},
+{
+    "id": "Merchant"
+},
+{
+    "id": "Blacksmith"
+},
+{
+    "id": "Training"
+}]
