@@ -2,7 +2,6 @@ package character
 
 import (
 	"eris/data"
-	"eris/skills"
 	"eris/utils"
 	"fmt"
 	"strconv"
@@ -52,13 +51,14 @@ func pickSkill(user, target *data.Character, skill data.Skill) bool {
 			fmt.Scan(&choice)
 		}
 		if user.CurSP >= skill.Cost {
+			user.CurSP -= skill.Cost
 			switch choice {
 			case 0:
 				fmt.Print("\n")
 				return false
 			case 1:
 				fmt.Print(user.Name, " cast ", string(skill.Icon), " ", skill.Name, ", ")
-				skills.UseFunc(skill.Id, user, user)
+				utils.UseSkill(skill.Id, user, user)
 				fmt.Print("\n")
 				return true
 			case 2:
@@ -66,7 +66,7 @@ func pickSkill(user, target *data.Character, skill data.Skill) bool {
 					fmt.Print(user.Name, " cast ", string(skill.Icon), " ", skill.Name, " away.")
 				} else {
 					fmt.Print(user.Name, " cast ", string(skill.Icon), " ", skill.Name, " on ", target.Name, ", ")
-					skills.UseFunc(skill.Id, user, target)
+					utils.UseSkill(skill.Id, user, target)
 				}
 				fmt.Print("\n")
 				return true

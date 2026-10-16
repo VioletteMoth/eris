@@ -2,7 +2,6 @@ package character
 
 import (
 	"eris/data"
-	"eris/items"
 	"eris/utils"
 	"fmt"
 	"strconv"
@@ -60,7 +59,7 @@ func pickItem(char, target *data.Character, index int) bool {
 				return false
 			case 1:
 				fmt.Print(char.Name, " used ", string(itm.Icon), " ", itm.Name, ", ")
-				items.UseFunc(itm.Id, char, char)
+				utils.UseItem(itm.Id, char, char)
 				char.Inventory[index-1] = data.GetItem("item", "empty")
 				fmt.Print("\n")
 				return true
@@ -69,7 +68,7 @@ func pickItem(char, target *data.Character, index int) bool {
 					fmt.Print(char.Name, " threw ", string(itm.Icon), " ", itm.Name, " on the ground.")
 				} else {
 					fmt.Print(char.Name, " threw ", string(itm.Icon), " ", itm.Name, " on ", target.Name, ", ")
-					items.UseFunc(itm.Id, char, target)
+					utils.UseItem(itm.Id, char, target)
 				}
 				char.Inventory[index-1] = data.GetItem("item", "empty")
 				fmt.Print("\n")
